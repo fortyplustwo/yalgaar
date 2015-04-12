@@ -9,37 +9,61 @@
 
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+        <!-- for the awesome table -->
+        <!-- DataTables CSS -->
+        <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.6/css/jquery.dataTables.css">
+        <!-- jQuery -->
+        <script type="text/javascript" charset="utf8" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+        <!-- DataTables -->
+        <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.6/js/jquery.dataTables.js"></script>
+
     </head>
     <body>
     <!-- for the fb share buttons -->
     <div id="fb-root"></div>
-    <script>(function(d, s, id) {
+        <script>(function(d, s, id) {
           var js, fjs = d.getElementsByTagName(s)[0];
           if (d.getElementById(id)) return;
           js = d.createElement(s); js.id = id;
           js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.3";
           fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
-    </script> 
+    </script>
+    <script>
+        $(document).ready(function(){
+            $('#tweets_ka_table').DataTable();
+        });
+    </script>
     <div class='container'>
         <div class='row'>
             <h4> New tweets will be collected every 30 minutes </h4>
-            <div class='table-responsive col-md-8'>
-                <table class='table table-bordered table-hover'>
-                    {% for tweet,user,tweet_id in tweets %}
-                    <tr>
-                        <td> {{ tweet }}  </td>
-                        <td> <a href="https://twitter.com/{{ user|urlencode }}">{{user}}</a></td>
-                        <td> <a class="btn btn-primary" href="{{'https://twitter.com/intent/tweet?text=' ~ tweet|urlencode }}" target="_blank">Tweet this</a> </td>
-                        <td> <div class="fb-share-button" data-href="https://twitter.com/{{user}}/status/{{tweet_id}}" data-layout="button_count"></div>
+            {% if not tweets %}
+            <h3> No tweets yet! Please be THE ONE to initiate the trend! :)</h3></td>
+            {% else %}
+            <table id='tweets_ka_table' class='table table-bordered table-hover'>
+                <thead>
+                   <tr>
+                       <td> Awesome Tweet! </td>
+                       <td> By user </td>
+                       <td> Share on Twitter </td>
+                       <td> Share on FaseBook </td>
                     </tr>
-                    {% else %}
-                        <h3> No tweets yet! Please start the trend! </h3>
-                    {% endfor %}
-                </table>
-                <p>*The user who tweeted this.</p>
-            </div>
-        </div>
+                </thead>
+                <tbody>
+                {% for tweet,user,tweet_id in tweets %}
+                <tr>
+
+                    <td> {{ tweet }} </td>
+                    <td> <a href="https://twitter.com/{{ user|urlencode }}">{{user}}</a></td>
+                    <td> <a class="btn btn-primary" href="{{'https://twitter.com/intent/tweet?text=' ~ tweet|urlencode }}" target="_blank">Tweet this</a> </td>
+                    <td> <div class="fb-share-button" data-href="https://twitter.com/{{user}}/status/{{tweet_id}}" data-layout="button"></div> 
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+          {% endif %}
     </div>
+</div>
 </body>
 </html>
