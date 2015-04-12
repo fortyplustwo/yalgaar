@@ -4,14 +4,16 @@ from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
 
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, Text
 
 class Tweet(Base):
     __tablename__ = 'tweets'
 
     id = Column(Integer, primary_key=True)
     tweet = Column(String(395), unique=True) #for the tweet of 140 chars + an URL of 255 chars max
-    user = Column(String(100), unique=True)
+    tweet_id = Column(String(100))
+    user = Column(String(100))
+    data = Column(Text)
     #json_blob = db.Column(db.string() # a blob for storing all data about the tweet that we might use later
   
     def __repr__(self):
