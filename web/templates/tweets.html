@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <title>#NetNeutrality Trending Campaign!</title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+    <!-- for the fb share buttons -->
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.3";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script> 
+    <div class='container'>
+        <div class='row'>
+            <h4> New tweets will be collected every 30 minutes </h4>
+            <div class='table-responsive col-md-8'>
+                <table class='table table-bordered table-hover'>
+                    {% for tweet,user,tweet_id in tweets %}
+                    <tr>
+                        <td> {{ tweet }}  </td>
+                        <td> <a href="https://twitter.com/{{ user|urlencode }}">{{user}}</a></td>
+                        <td> <a class="btn btn-primary" href="{{'https://twitter.com/intent/tweet?text=' ~ tweet|urlencode }}" target="_blank">Tweet this</a> </td>
+                        <td> <div class="fb-share-button" data-href="https://twitter.com/{{user}}/status/{{tweet_id}}" data-layout="button_count"></div>
+                    </tr>
+                    {% else %}
+                        <h3> No tweets yet! Please start the trend! </h3>
+                    {% endfor %}
+                </table>
+                <p>*The user who tweeted this.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
