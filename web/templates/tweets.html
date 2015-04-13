@@ -41,14 +41,13 @@
             {% if not tweets %}
             <h3> No tweets yet! Please be THE ONE to initiate the trend! :)</h3></td>
             {% else %}
-            <table id='tweets_ka_table' class='table table-bordered table-hover'>
+            <table id='tweets_ka_table' class='table table-bordered table-hover' width='100%'>
                 <thead>
                    <tr>
                        <td> Awesome Tweet! </td>
                        <td> By user </td>
-                       <td> Share on Twitter </td>
-                       <td> Share on FaseBook </td>
-                    </tr>
+                       <td colspan='2' style="padding-right: 20px";> Share </td>
+                    </trbtn btn-success btn btn-success >
                 </thead>
                 <tbody>
                 {% for tweet,user,tweet_id in tweets %}
@@ -56,8 +55,11 @@
 
                     <td> {{ tweet }} </td>
                     <td> <a href="https://twitter.com/{{ user|urlencode }}">{{user}}</a></td>
-                    <td> <a class="btn btn-primary" href="{{'https://twitter.com/intent/tweet?text=' ~ tweet|urlencode }}" target="_blank">Tweet this</a> </td>
-                    <td> <div class="fb-share-button" data-href="https://twitter.com/{{user}}/status/{{tweet_id}}" data-layout="button"></div> 
+                    <td>
+                        <a class="btn btn-sm btn-info" href="{{'https://twitter.com/intent/tweet?text=' ~ tweet|urlencode }}" target="_blank">Tweet this</a>
+                        <div class="btn fb-share-button" data-href="https://twitter.com/{{user}}/status/{{tweet_id}}" data-layout="button"></div> 
+                        <a href="whatsapp://send?text={{ tweet|urlencode }}" target="_blank" class="btn-sm btn-success btn">Share via Whatsapp<br><small>Mobile only</small></a>
+                    </td>
                 </tr>
                 {% endfor %}
                 </tbody>
