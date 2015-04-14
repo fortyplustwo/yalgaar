@@ -20,7 +20,8 @@ for text,info in tweets.items():
             tweet_id = info['id_str'],
             user = info['user']['screen_name'],
             data = json.dumps(info),
-            weight = (favs * 1) + (retweets * 2)
+            weight = (favs * 1) + (retweets * 2),
+            submitted = False
         )
     s.add(t)
 #now save to db
