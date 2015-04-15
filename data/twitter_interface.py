@@ -8,24 +8,26 @@ class YalgaarTwitterInterface:
     t = None
     limit = 100 #The number of tweets we will collect
 
-    def __init__(self, hashtag = None, limit = 50):
+    def __init__(self, hashtag = None, limit = 50, tweet_type = 'mixed'):
         '''
         :hashtag: the hashtag for searching
+        :limit: how many tweets to collect
+        :tweet_type: what type of tweet to collect - popular/recent/mixed. See Twitter API docs
         '''
 
         if hashtag:
             self.hashtag = hashtag
         
         self.limit = limit
-
+        self.tweet_type = tweet_type
         self.t = Twython(APP_KEY, access_token=ACCESS_TOKEN)
         
     def get_data(self):
 
         results = self.t.cursor(self.t.search,
                     q           = self.hashtag,
-                    count       = (self.limit + 100) #this is random
-                    result_type = 'mixed'
+                    count       = (self.limit * 2), #this is to so that we have enough tweets which remain even after filters below
+                    result_type = self.tweet_type,
                     )
     
         try:

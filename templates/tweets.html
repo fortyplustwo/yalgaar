@@ -1,26 +1,9 @@
-<html>
-    <head>
-        <title>#NetNeutrality Trending Campaign!</title>
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+{% extends "base.html" %}
 
-        <!-- Optional theme -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
-
-        <!-- Latest compiled and minified JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-
-        <!-- for the awesome table -->
-        <!-- DataTables CSS -->
-        <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.6/css/jquery.dataTables.css">
-        <!-- jQuery -->
-        <script type="text/javascript" charset="utf8" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-        <!-- DataTables -->
-        <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.6/js/jquery.dataTables.js"></script>
-
-    </head>
-    <body>
-    <!-- for the fb share buttons -->
+{% block title %} {{ type_of_tweets|capitalize }} Tweets {% endblock title %}
+{% block tweets_block %}
+{{ super () }}
+<!-- for the fb share buttons -->
     <div id="fb-root"></div>
         <script>(function(d, s, id) {
           var js, fjs = d.getElementsByTagName(s)[0];
@@ -32,7 +15,7 @@
     </script>
     <script>
         $(document).ready(function(){
-            $('#tweets_ka_table').DataTable();
+            $('#tweets').DataTable();
         });
     </script>
     <div class='container'>
@@ -41,20 +24,20 @@
             {% if not tweets %}
             <h3> No tweets yet! Please be THE ONE to initiate the trend! :)</h3></td>
             {% else %}
-            <table id='tweets_ka_table' class='table table-bordered table-hover' width='100%'>
+            <table id='tweets' class='table table-bordered table-hover' width='100%'>
                 <thead>
                    <tr>
                        <td> Awesome Tweet! </td>
-                       <td> By user<sup>see FAQ</sup> </td>
-                       <td colspan='2' style="padding-right: 20px";> Share </td>
+                       <td> By user/on</td>
+                       <td> Share </td>
                     </trbtn btn-success btn btn-success >
                 </thead>
                 <tbody>
-                {% for tweet,user,tweet_id in tweets %}
+                {% for tweet,user,tweet_id,tweeted_on in tweets %}
                 <tr>
 
-                    <td> {{ tweet }} </td>
-                    <td> <a href="https://twitter.com/{{ user|urlencode }}">{{user}}</a></td>
+                    <td><p class='lead'>{{ tweet|string|make_internal_link|safe }}</a> </td>
+                    <td> <a href="https://twitter.com/{{ user|urlencode }}">{{user}}</a><br/>{{ tweeted_on }}</td>
                     <td>
                         <a class="btn btn-sm btn-info" href="{{'https://twitter.com/intent/tweet?text=' ~ tweet|urlencode }}" target="_blank">Tweet this</a>
                         <div class="btn fb-share-button" data-href="https://twitter.com/{{user}}/status/{{tweet_id}}" data-layout="button"></div> 
@@ -65,7 +48,6 @@
                 </tbody>
             </table>
           {% endif %}
+      </div>
     </div>
-</div>
-</body>
-</html>
+{% endblock %}
