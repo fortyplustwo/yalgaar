@@ -1,5 +1,4 @@
-from flask import Flask, request, render_template
-from settings import *
+from flask import Flask, request, render_template, redirect, url_for
 from data.db_interface import engine, Tweet
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import text
@@ -10,7 +9,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('base.html')
+    return redirect(url_for('recent_tweets'))
 
 @app.route('/popular_tweets/')
 def popular_tweets():
@@ -24,8 +23,6 @@ def popular_tweets():
                             "select * from tweets where tweet_type = 'popular' \
                              order by weight desc")).all()
 
-    #submitted_tweets = s.query('tweet','user','tweet_id').\
-    #                      from_statement(text("select * from tweets order by submitted_on limit 5")).all()
     return render_template('tweets.html', tweets = popular_tweets, type_of_tweets = 'popular')
 
 @app.route('/recent_tweets/')
