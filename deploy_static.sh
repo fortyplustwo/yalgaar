@@ -2,7 +2,7 @@
 
 git checkout master
 
-git pull --rebase origin
+git pull --rebase origin master
 
 source ./yalgaar_env/bin/activate
 
