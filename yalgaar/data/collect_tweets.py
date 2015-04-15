@@ -8,8 +8,8 @@ import json
 Session = sessionmaker(bind=engine)
 s = Session()
 
-def collect_tweets(tweet_type = 'mixed'):
-    y = YalgaarTwitterInterface(tweet_type=tweet_type)
+def collect_tweets(tweet_type = 'mixed', hashtag = '#SaveTheInternet', limit = 100):
+    y = YalgaarTwitterInterface(tweet_type = tweet_type, hashtag = hashtag, limit = limit)
     tweets = y.get_data()
 
     #print "We got total %d tweets" % len(tweets)
@@ -32,7 +32,7 @@ def collect_tweets(tweet_type = 'mixed'):
             s.commit()
         except IntegrityError as ie:
             s.rollback(); #This has been caused by a duplicate tweet that was encountered. Just skip.
-            print "Encountered a duplicate tweet %s" % (text)
+            print "Encountered a duplicate tweet %s" % (text.encode('utf8'))
             print "Ignoring it."
             continue;
         except Exception as e:
