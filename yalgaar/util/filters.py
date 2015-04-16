@@ -4,7 +4,7 @@ import re
 def hyperlinkize(l):
     '''Wraps a link inside an html tag'''
     l = l.group(0).strip()
-    return "<a href='%s'>%s</a> " % (l,l)
+    return "<a href='%s' target='_blank'>%s</a> " % (l,l)
 
 @app.template_filter()
 def make_internal_link(text):
