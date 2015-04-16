@@ -13,9 +13,9 @@ python freeze.py
 git checkout gh-pages
 
 #add the built pages
-for f in index.html submitted_tweets recent_tweets popular tweets; do
-    rm $f
-    mv yalgaar/build/$f ./
+for f in index.html submitted_tweets recent_tweets popular_tweets; do
+    rm -r $f
+    mv ./yalgaar/build/$f ./
     git add -r $f
 done
 
