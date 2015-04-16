@@ -14,7 +14,7 @@ class Tweet(Base):
     __tablename__ = 'tweets'
 
     id = Column(Integer, primary_key=True)
-    tweet = Column(String(395), unique=True) #for the tweet of 140 chars + an URL of 255 chars max
+    tweet = Column(String(700), unique=True) #for the tweet of 140 chars + an URL of 255 chars max
     tweet_id = Column(String(100))
     user = Column(String(100))
     weight = Column(SmallInteger) #Equals 1xNumber_of_Favs 2xNumber_of_Retweets. Otherwise 0
