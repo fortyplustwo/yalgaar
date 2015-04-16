@@ -4,7 +4,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy import text
 from datetime import datetime, timedelta
 
-app = Flask(__name__)
+app = Flask(__name__.split('.')[0])
 #app.config.from_object(__name__)
 
 @app.route('/')
