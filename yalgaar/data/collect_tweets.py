@@ -38,5 +38,3 @@ def collect_tweets(tweet_type = 'mixed', hashtag = '#SaveTheInternet', limit = 1
         except Exception as e:
             raise e
 
-collect_tweets(tweet_type = 'recent')
-collect_tweets(tweet_type = 'popular')
