@@ -36,7 +36,7 @@
                 {% for tweet,user,tweet_id,tweeted_on in tweets %}
                 <tr>
 
-                    <td><p class='lead'>{{ tweet|string|make_internal_link|safe }}</a> </td>
+                    <td><p class='lead'>{{ tweet|string|make_internal_link|safe }}</p> </td>
                     <td> <a href="https://twitter.com/{{ user|urlencode }}">{{user}}</a><br/>{{ tweeted_on }}</td>
                     <td>
                         <a class="btn btn-sm btn-info" href="{{'https://twitter.com/intent/tweet?text=' ~ tweet|urlencode }}" target="_blank">Tweet this</a>
