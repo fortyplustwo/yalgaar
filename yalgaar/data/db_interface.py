@@ -1,5 +1,6 @@
 from sqlalchemy import create_engine
-engine = create_engine('postgresql+psycopg2://yalgaar:yalgaar123@localhost/yalgaar',
+from settings import DB_USER, DB_PASSWORD, DB_HOST, DB_NAME
+engine = create_engine('postgresql+psycopg2://%s:%s@%s/%s' % (DB_USER, DB_PASSWORD, DB_HOST, DB_NAME),
                         echo=True,
                     )
 from sqlalchemy.ext.declarative import declarative_base

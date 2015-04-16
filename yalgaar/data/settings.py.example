@@ -4,3 +4,8 @@ APP_SECRET = ''
 
 t = Twython(APP_KEY, APP_SECRET, oauth_version=2)
 ACCESS_TOKEN = t.obtain_access_token()
+
+DB_USER = ''
+DB_PASSWORD = ''
+DB_HOST = ''
+DB_NAME = ''
