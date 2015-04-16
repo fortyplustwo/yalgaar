@@ -14,7 +14,7 @@ def make_internal_link(text):
              will return
             "Hey this is a good websiet! <a href='http://fortyplustwo.github.io'>http://fortyplustwo.github.io</a>"
     '''
-    print "Working on ", text.encode('utf8')
+
     #A link is anything that starts with 'http://' and ends with ' '
     #Or it may begin with www and end with space
     http_link_inside_text = r'(((http|https)://)((\w+)|(\.)|/|\?|=|\&|\%|[0-9]){0,})(\s)*'
@@ -22,6 +22,5 @@ def make_internal_link(text):
     r = re.compile(http_link_inside_text)
 
     result = r.subn(hyperlinkize, text,)
-    print "replacement successfull!", result
     
     return result[0]

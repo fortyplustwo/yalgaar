@@ -32,8 +32,8 @@ def collect_tweets(tweet_type = 'mixed', hashtag = '#SaveTheInternet', limit = 1
             s.commit()
         except IntegrityError as ie:
             s.rollback(); #This has been caused by a duplicate tweet that was encountered. Just skip.
-            print "Encountered a duplicate tweet %s" % (text.encode('utf8'))
-            print "Ignoring it."
+            #print "Encountered a duplicate tweet %s" % (text.encode('utf8'))
+            print "Ignoring a duplicate tweet."
             continue;
         except Exception as e:
             raise e
