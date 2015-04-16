@@ -1,4 +1,6 @@
 *.pyc
 yalgaar_env/
 settings.py
+yalgaar/build/
+./build/
 
