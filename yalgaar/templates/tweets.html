@@ -3,16 +3,6 @@
 {% block title %} {{ type_of_tweets|capitalize }} Tweets {% endblock title %}
 {% block tweets_block %}
 {{ super () }}
-<!-- for the fb share buttons -->
-    <div id="fb-root"></div>
-        <script>(function(d, s, id) {
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) return;
-          js = d.createElement(s); js.id = id;
-          js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.3";
-          fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    </script>
     <div class='container-fluid'>
         <div class='row-fluid'>
             <h4> New tweets will be collected every 10 minutes </h4>
@@ -35,7 +25,7 @@
                     <td> <a href="https://twitter.com/{{ user|urlencode }}" target='_blank'>{{user}}</a><br/>{{ tweeted_on }}</td>
                     <td>
                         <a class="btn btn-sm btn-info" href="https://twitter.com/intent/tweet?text=RT %40{{ user|urlencode ~ ' ' ~ tweet|urlencode }}" target="_blank">Tweet this</a>
-                        <div class="btn fb-share-button" data-href="https://twitter.com/{{user}}/status/{{tweet_id}}" data-layout="button"></div> 
+                        <a class='btn btn-sm btn-primary' href="https://www.facebook.com/dialog/feed?app_id=414593255378966&display=popup&caption=%23SaveTheInternet&link=https://twitter.com/{{user}}/status/{{tweet_id}}&redirect_uri=http://yalgaar.github.io&description={{ tweet|urlencode }}&caption=#SaveTheInternet&actions=%7B%22name%22%3A%22Save%20The%20Internet%22%2C%22link%22%3A%22http%3A%2F%2Fsavetheinternet.in%22%7D">Fasebook</a>
                         <a href="whatsapp://send?text={{ tweet|urlencode }}" target="_blank" class="btn-sm btn-success btn">WhatsApp<br><small>Mobile only</small></a>
                     </td>
                 </tr>
