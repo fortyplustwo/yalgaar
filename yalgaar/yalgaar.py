@@ -11,7 +11,7 @@ app = Flask(__name__)
 def index():
     return redirect(url_for('recent_tweets'))
 
-@app.route('/popular_tweets')
+@app.route('/popular_tweets/')
 def popular_tweets():
     Session = sessionmaker(bind=engine)
     s = Session()
@@ -25,7 +25,7 @@ def popular_tweets():
 
     return render_template('tweets.html', tweets = popular_tweets, type_of_tweets = 'popular')
 
-@app.route('/recent_tweets')
+@app.route('/recent_tweets/')
 def recent_tweets():
     Session = sessionmaker(bind=engine)
     s = Session()
