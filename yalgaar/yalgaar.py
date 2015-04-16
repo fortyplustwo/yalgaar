@@ -44,7 +44,6 @@ def recent_tweets():
 
     return render_template('tweets.html', tweets = recent_tweets, type_of_tweets = 'recent')
 
-@app.route('/submitted_tweets')
-def submitted_tweets():
-
-    return render_template('base.html', message = "No tweets here yet! Please submit some by tweeting us at http://twitter.com/_yalgaar/ :)")
+#@app.route('/submitted_tweets/')
+#def submitted_tweets():
+#    return render_template('base.html', message = "No tweets here yet! Please submit some by tweeting us at http://twitter.com/_yalgaar/ :)")
