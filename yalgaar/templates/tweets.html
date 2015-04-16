@@ -39,7 +39,7 @@
                     <td><p class='lead'>{{ tweet|string|make_internal_link|safe }}</p> </td>
                     <td> <a href="https://twitter.com/{{ user|urlencode }}">{{user}}</a><br/>{{ tweeted_on }}</td>
                     <td>
-                        <a class="btn btn-sm btn-info" href="{{'https://twitter.com/intent/tweet?text=' ~ tweet|urlencode }}" target="_blank">Tweet this</a>
+                        <a class="btn btn-sm btn-info" href="https://twitter.com/intent/tweet?text=RT %40{{ user|urlencode ~ ' ' ~ tweet|urlencode }}" target="_blank">Tweet this</a>
                         <div class="btn fb-share-button" data-href="https://twitter.com/{{user}}/status/{{tweet_id}}" data-layout="button"></div> 
                         <a href="whatsapp://send?text={{ tweet|urlencode }}" target="_blank" class="btn-sm btn-success btn">Share via Whatsapp<br><small>Mobile only</small></a>
                     </td>
