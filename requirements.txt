@@ -8,7 +8,9 @@ argparse==1.2.1
 itsdangerous==0.24
 oauthlib==0.7.2
 psycopg2==2.6
+python-dateutil==2.4.2
 requests==2.6.0
 requests-oauthlib==0.4.2
+six==1.9.0
 twython==3.2.0
 wsgiref==0.1.2
