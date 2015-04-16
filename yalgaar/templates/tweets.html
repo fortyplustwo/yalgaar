@@ -13,18 +13,13 @@
           fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
     </script>
-    <script>
-        $(document).ready(function(){
-            $('#tweets').DataTable();
-        });
-    </script>
-    <div class='container'>
-        <div class='row'>
+    <div class='container-fluid'>
+        <div class='row-fluid'>
             <h4> New tweets will be collected every 10 minutes </h4>
             {% if not tweets %}
             <h3> No tweets yet! Please be THE ONE to initiate the trend! :)</h3></td>
             {% else %}
-            <table id='tweets' class='table table-bordered table-hover' width='100%'>
+            <table id='tweets' class='table-striped table-condensed' width='100%'>
                 <thead>
                    <tr>
                        <td> Awesome Tweet! </td>
