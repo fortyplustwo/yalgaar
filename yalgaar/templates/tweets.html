@@ -36,7 +36,7 @@
                     <td>
                         <a class="btn btn-sm btn-info" href="https://twitter.com/intent/tweet?text=RT %40{{ user|urlencode ~ ' ' ~ tweet|urlencode }}" target="_blank">Tweet this</a>
                         <div class="btn fb-share-button" data-href="https://twitter.com/{{user}}/status/{{tweet_id}}" data-layout="button"></div> 
-                        <a href="whatsapp://send?text={{ tweet|urlencode }}" target="_blank" class="btn-sm btn-success btn">Share via Whatsapp<br><small>Mobile only</small></a>
+                        <a href="whatsapp://send?text={{ tweet|urlencode }}" target="_blank" class="btn-sm btn-success btn">WhatsApp<br><small>Mobile only</small></a>
                     </td>
                 </tr>
                 {% endfor %}
