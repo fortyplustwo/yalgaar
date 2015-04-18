@@ -21,7 +21,7 @@ def popular_tweets():
     
     popular_tweets = s.query('tweet','user','tweet_id','tweeted_on'). \
                           from_statement(text(
-                            "select * from tweets where tweet_type = 'popular' \
+                            "select distinct on (tweets.user) * from tweets where tweet_type = 'popular' \
                              order by weight desc, tweeted_on desc limit %s" % MAX_POPULAR_TWEETS )).all()
 
     return render_template('tweets.html', tweets = popular_tweets, type_of_tweets = 'popular')
@@ -38,7 +38,7 @@ def recent_tweets():
 
     recent_tweets = s.query('tweet','user','tweet_id','tweeted_on'). \
                           from_statement(text(
-                            "select * from tweets where tweet_type = 'recent' \
+                            "select distinct on (tweets.user) * from tweets where tweet_type = 'recent' \
                              and tweeted_on >= (now() - interval '12 hours') \
                              and tweet not like 'RT%%' \
                              order by tweeted_on desc, weight desc limit %s" % MAX_RECENT_TWEETS)).all()
