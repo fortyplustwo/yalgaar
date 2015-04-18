@@ -44,9 +44,12 @@ class YalgaarTwitterInterface:
                 #we don't want to snoop on someone's conversations
                 if r['in_reply_to_screen_name'] is not None:
                     continue;
+                elif r['text'].startswith('RT'):
+                    continue; #We don't want any literal or direct RTs (Literal: Manually prefix 'RT', direct: Someone RT's but twitter gives us this text)
                 else:
                     tweets[r['text']] = r
                     count = count + 1
+
             return tweets
         except Exception as e:
             raise e

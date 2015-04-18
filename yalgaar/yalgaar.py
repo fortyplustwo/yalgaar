@@ -40,6 +40,7 @@ def recent_tweets():
                           from_statement(text(
                             "select * from tweets where tweet_type = 'recent' \
                              and tweeted_on >= (now() - interval '12 hours') \
+                             and tweet not like 'RT%%' \
                              order by tweeted_on desc, weight desc limit %s" % MAX_RECENT_TWEETS)).all()
 
     return render_template('tweets.html', tweets = recent_tweets, type_of_tweets = 'recent')
